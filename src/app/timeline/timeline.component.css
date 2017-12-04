@@ -1,0 +1,116 @@
+.keywords {
+  list-style-type: none;
+}
+
+.keywords li {
+  position: relative;
+  left: 0;
+  padding: .3em 0;
+  text-align: center;
+  font-size: small;
+  font-family: "Gill Sans", sans-serif;
+}
+
+.events {
+  /*margin: 0 0 2em 0;*/
+  list-style-type: none;
+  padding: 0;
+  width: 40em;
+  margin: auto
+}
+
+.events li {
+  /*cursor: pointer;*/
+  position: relative;
+  left: 0;
+  background-color: #DDD;
+  margin: 1.0em;
+  padding: .3em 0;
+  /*height: 3.0em;*/
+  border-radius: 10px;
+  text-align: center;
+
+
+  font-size: small;
+  font-family: "Gill Sans", sans-serif;
+}
+
+.events .date {
+  display: inline-block;
+  font-size: large;
+  /*color: white;*/
+  /*padding: 0.8em 0.7em 0.8em 0.7em;*/
+  /*background-color: #607D8B;*/
+  line-height: 1em;
+  /*left: -1px;*/
+  /*top: -4px;*/
+  /*height: 1.8em;*/
+  margin-right: .8em;
+  border-radius: 6px;
+}
+
+.events .title {
+  font-size: medium;
+  color: #555555;
+  padding-top: 0.2em;
+  /*padding-bottom: 0.8em;*/
+  /*padding: 0.8em 0.7em 0 0.7em;*/
+  /*background-color: #607D8B;*/
+  /*line-height: 1em;*/
+  /*left: -1px;*/
+  /*top: -4px;*/
+  /*height: 1.8em;*/
+  /*margin-right: .8em;*/
+  /*border-radius: 6px;*/
+}
+
+.events .details {
+  font-size: small;
+  text-align: justify;
+  color: #555555;
+  /*border: solid 1px;*/
+  /*padding-top: 0.2em;*/
+  /*padding-bottom: 0.8em;*/
+  /*background-color: #607D8B;*/
+  /*line-height: 1em;*/
+  /*left: -1px;*/
+  /*top: -4px;*/
+  /*height: 1.8em;*/
+  /*margin-right: .8em;*/
+  /*border-radius: 6px;*/
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.events .details .text-details {
+  padding: 0.5em 0.2em 0 0.2em;
+}
+
+
+
+.events .image {
+  padding-bottom: 10px;
+}
+
+.events img {
+  border: 2px solid black;
+}
+
+/*.events .image {*/
+  /*display: inline-block;*/
+  /*font-size: small;*/
+  /*color: white;*/
+  /*padding: 0.8em 0.7em 0.8em 0.7em;*/
+  /*background-color: gray;*/
+  /*line-height: 1em;*/
+  /*left: -1px;*/
+  /*top: -4px;*/
+  /*!*height: 1.8em;*!*/
+  /*margin-left: .8em;*/
+  /*margin-right: .8em;*/
+  /*border-radius: 6px;*/
+/*}*/
+
+
+
+
+

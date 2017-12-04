@@ -1,0 +1,20 @@
+<ul class="keywords">
+  <li *ngFor="let keyword of timeline.keywords">
+    <label class="container">
+      <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
+    </label>{{keyword}}
+  </li>
+</ul>
+
+<ul class="events">
+  <li *ngFor="let event of timeline.filteredEvents">
+    <div class="date">{{event.date.toDisplayString()}} <div class="title">{{event.title}}</div></div>
+    <hr *ngIf="event.details">
+    <div class="details" *ngIf="event.details">
+      {{event.details}}
+    </div>
+    <!--<div class="image">-->
+      <!--<img width=25% src="/assets/Tree.jpg">-->
+    <!--</div>-->
+  </li>
+</ul>
