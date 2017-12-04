@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { TimelineService } from '../timeline.service';
 import { Timeline } from '../timeline';
 
@@ -18,7 +17,10 @@ export class TimelineComponent implements OnInit {
 
   ngOnInit() {
     console.debug('Timeline Component: OnInit');
-    this.timeline = this.timelineService.get();
+    this.timelineService.getTimeline().subscribe(gah => {
+      this.timeline = new Timeline(gah);
+      console.log(JSON.stringify(gah));});
+    // this.timeline = TimelineService.get();
   }
 
   onClick(keyword: string, checked: boolean) {

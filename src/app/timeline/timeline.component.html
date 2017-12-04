@@ -1,4 +1,4 @@
-<ul class="keywords">
+<ul class="keywords" *ngIf="timeline">
   <li *ngFor="let keyword of timeline.keywords">
     <label class="container">
       <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
@@ -6,7 +6,7 @@
   </li>
 </ul>
 
-<ul class="events">
+<ul class="events" *ngIf="timeline">
   <li *ngFor="let event of timeline.filteredEvents">
     <div class="date">{{event.date.toDisplayString()}} <div class="title">{{event.title}}</div></div>
     <hr *ngIf="event.details">

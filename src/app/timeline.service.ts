@@ -1,11 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Timeline} from './timeline';
+import {catchError} from 'rxjs/operators';
+import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class TimelineService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
+    this.url = 'http://localhost:3000/timeline';
   }
+
+  url: string;
 
   static get(): Timeline {
     console.debug('Timeline Service Get');
@@ -242,6 +249,20 @@ export class TimelineService {
     ];
 
     return new Timeline(myObj);
+  }
+
+  getTimeline(): Observable<any[]> {
+    console.log('timelineService.getTimeline');
+    return this.http.get<any[]>(this.url);
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
 }

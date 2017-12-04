@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { TimelineService } from './timeline.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TimelineService } from './timeline.service';
     TimelineComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [TimelineService],
   bootstrap: [AppComponent]
