@@ -7,10 +7,15 @@ export class TimelineService {
   constructor() {
   }
 
-  get(): Timeline {
+  static get(): Timeline {
     console.debug('Timeline Service Get');
 
     const myObj = [
+      {
+        keywords: ['Brown'],
+        date: 'August 19, 1875',
+        title: 'Harry Gardner Brown born in Nebraska'
+      },
       {
         keywords: ['Brown'],
         date: 'June 1971',
