@@ -3,9 +3,6 @@ import { TimelineDate } from './timeline-date';
 export class TimelineEvent {
 
   constructor(x) {
-    console.debug('TimelineEvent Constructor');
-    console.debug('\tDescription: ' + x.description);
-
     this.title = x.title;
     this.details = x.details;
     this.keywords = x.keywords;
@@ -14,7 +11,7 @@ export class TimelineEvent {
 
   date: TimelineDate;
   title: string;
-  details: string
+  details: string;
   keywords: string[];
 
   toString() {

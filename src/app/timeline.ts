@@ -6,7 +6,6 @@ export class Timeline {
     console.debug('Timeline Class: Constructor');
 
     this.keywords = new Set();
-    this.enabledKeywords = new Set();
     this.events = [];
     this.filteredEvents = [];
     for (const x of eventList) {
@@ -19,35 +18,22 @@ export class Timeline {
     this.events.sort();
   }
 
+  filteredEvents: TimelineEvent[];
   private events: TimelineEvent[];
-  private filteredEvents: TimelineEvent[];
   private keywords: Set<string>;
-  private enabledKeywords: Set<string>;
 
-  filter(keyword, checked) {
-    console.log('Filtering');
-    console.log(keyword);
-    console.log(checked);
-    console.log(this.enabledKeywords);
-
-    if (checked) {
-      this.enabledKeywords.add(keyword);
-    } else {
-      this.enabledKeywords.delete(keyword);
-    }
-    console.log(this.enabledKeywords);
-
+  filter(enabledKeywords) {
+    console.log('New Filtering');
+    console.log(enabledKeywords);
     this.filteredEvents = [];
     for (const event of this.events) {
-      if (this.findOne(this.enabledKeywords, event.keywords) === true) {
+      if (this.findOne(enabledKeywords, event.keywords) === true) {
         this.filteredEvents.push(event);
       }
     }
-
-    console.log(this.filteredEvents);
-
     this.filteredEvents.sort();
   }
+
 
 
   findOne(haystack, arr) {

@@ -1,10 +1,24 @@
-<ul class="keywords" *ngIf="timeline">
-  <li *ngFor="let keyword of timeline.keywords">
-    <label class="container">
-      <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
-    </label>{{keyword}}
-  </li>
-</ul>
+<div class="controls">
+
+  <div class="keyword-selector">
+    <ul class="keywords" *ngIf="timeline">
+      <li *ngFor="let keyword of timeline.keywords">
+        <label class="container">
+          <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
+        </label>{{keyword}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="add-event">
+    <i class="fa fa-plus-circle fa-4x"></i>
+    <div><label>Date:&nbsp;&nbsp;&nbsp;&nbsp;<input #date type="text"></label></div>
+    <div><label>Title:&nbsp;&nbsp;&nbsp;&nbsp;<input #title type="text"></label></div>
+    <div><label>Details:<input #details type="text"></label></div>
+    <div><button (click)="onAddEvent(date.value, title.value, details.value)">Submit</button></div>
+  </div>
+
+</div>
 
 <ul class="events" *ngIf="timeline">
   <li *ngFor="let event of timeline.filteredEvents">
