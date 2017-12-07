@@ -18,9 +18,9 @@ export class Timeline {
     this.events.sort();
   }
 
+  keywords: Set<string>;
   filteredEvents: TimelineEvent[];
   private events: TimelineEvent[];
-  private keywords: Set<string>;
 
   filter(enabledKeywords) {
     console.log('New Filtering');
@@ -37,9 +37,11 @@ export class Timeline {
 
 
   findOne(haystack, arr) {
-    return arr.some(function (v) {
-      return Array.from(haystack).indexOf(v) >= 0;
-    });
+    if (arr.length) {
+      return arr.some(function (v) {
+        return Array.from(haystack).indexOf(v) >= 0;
+      });
+    }
   }
 
 

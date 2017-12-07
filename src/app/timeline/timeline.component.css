@@ -1,17 +1,23 @@
 .controls {
-  width: 50%;
+  width: 60%;
   margin: auto;
-  background: lavenderblush;
+  background: lightgray;
+  border: solid 2px  darkgray;
   padding: 10px;
-  height: 160px;
+  height: 175px;
   font-size: small;
   font-family: "Gill Sans", sans-serif;
 }
 
 .keyword-selector {
   width: 40%;
-  border: solid 1px;
+  /*border: solid 1px;*/
   float: left;
+}
+
+.keyword-selector > label {
+  font-size: medium;
+  padding: .5em 0 0 1.0em;
 }
 
 .add-event {
@@ -70,6 +76,39 @@
   margin-right: .8em;
   border-radius: 6px;
 }
+
+.events .edit-event {
+  font-size: small;
+  float: left;
+  padding-left: 0.5em;
+}
+
+.events .edit-event:hover {
+  cursor: pointer;
+}
+
+.events .save-event {
+  font-size: small;
+  float: left;
+  padding-left: 0.5em;
+}
+
+.events .save-event:hover {
+  cursor: pointer;
+}
+
+.events .delete-event {
+  font-size: small;
+  float: right;
+  padding-right: 0.5em;
+}
+.events .delete-event:hover {
+  cursor: pointer;
+}
+
+
+
+
 
 .events .title {
   font-size: medium;

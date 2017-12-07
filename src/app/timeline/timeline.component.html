@@ -1,6 +1,7 @@
 <div class="controls">
 
   <div class="keyword-selector">
+    <label class="title">Keywords</label>
     <ul class="keywords" *ngIf="timeline">
       <li *ngFor="let keyword of timeline.keywords">
         <label class="container">
@@ -12,23 +13,32 @@
 
   <div class="add-event">
     <i class="fa fa-plus-circle fa-4x"></i>
-    <div><label>Date:&nbsp;&nbsp;&nbsp;&nbsp;<input #date type="text"></label></div>
-    <div><label>Title:&nbsp;&nbsp;&nbsp;&nbsp;<input #title type="text"></label></div>
-    <div><label>Details:<input #details type="text"></label></div>
-    <div><button (click)="onAddEvent(date.value, title.value, details.value)">Submit</button></div>
+    <div><label>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #date type="text"></label></div>
+    <div><label>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #title type="text"></label></div>
+    <div><label>Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #details type="text"></label></div>
+    <div><label>Keywords:&nbsp;<input #keywords type="text"></label></div>
+    <div>
+      <button (click)="onAddEvent(date.value, title.value, details.value, keywords.value)">Submit</button>
+    </div>
   </div>
 
 </div>
 
 <ul class="events" *ngIf="timeline">
   <li *ngFor="let event of timeline.filteredEvents">
-    <div class="date">{{event.date.toDisplayString()}} <div class="title">{{event.title}}</div></div>
+    <div class="date">{{event.date.toDisplayString()}}</div>
+    <i *ngIf="event.readOnly" class="fa fa-pencil-square-o edit-event" (click)="onEditEvent(gah, event)"></i>
+    <i *ngIf="!event.readOnly" class="fa fa-save save-event" (click)="onSaveEvent(gah, event)"></i>
+    <i class="fa fa-trash-o delete-event" (click)="onDeleteEvent(event)"></i>
+    <div>
+      <input #gah type="text" class="title" [(ngModel)]="event.title" placeholder="title" readonly>
+    </div>
     <hr *ngIf="event.details">
     <div class="details" *ngIf="event.details">
       {{event.details}}
     </div>
     <!--<div class="image">-->
-      <!--<img width=25% src="/assets/Tree.jpg">-->
+    <!--<img width=25% src="/assets/Tree.jpg">-->
     <!--</div>-->
   </li>
 </ul>
