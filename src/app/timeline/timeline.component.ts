@@ -23,7 +23,6 @@ export class TimelineComponent implements OnInit {
     this.enabledKeywords.add('Brown');
     this.timelineService.getTimeline().subscribe(gah => {
       console.log('ngOnInit callback');
-      console.log(gah);
       this.timeline = new Timeline(gah);
       this.timeline.filter(this.enabledKeywords);
     });
@@ -52,6 +51,27 @@ export class TimelineComponent implements OnInit {
 
   onEditEvent(element: any, timelineEvent: TimelineEvent) {
     timelineEvent.readOnly = false;
+
+    element.querySelector('.date').removeAttribute('readonly');
+    element.querySelector('.title').removeAttribute('readonly');
+    element.querySelector('.details').removeAttribute('readonly');
+  }
+
+  onEditDate(element: any, timelineEvent: TimelineEvent) {
+    timelineEvent.dateIsReadOnly = false;
+    timelineEvent.showSave = true;
+    element.removeAttribute('readonly');
+  }
+
+  onEditTitle(element: any, timelineEvent: TimelineEvent) {
+    timelineEvent.titleIsReadOnly = false;
+    timelineEvent.showSave = true;
+    element.removeAttribute('readonly');
+  }
+
+  onEditDetails(element: any, timelineEvent: TimelineEvent) {
+    timelineEvent.detailsAreReadOnly = false;
+    timelineEvent.showSave = true;
     element.removeAttribute('readonly');
   }
 

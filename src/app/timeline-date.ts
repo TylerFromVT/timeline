@@ -4,6 +4,7 @@ export class TimelineDate {
     if (!dateString) {
       throw new Error('No date specified');
     }
+    this.readOnly = true;
     this.dateString = dateString;
     this.month = '';
     this.day = '';
@@ -27,6 +28,7 @@ export class TimelineDate {
     }
   }
 
+  readOnly: boolean;
   private year: string;
   private month: string;
   private day: string;

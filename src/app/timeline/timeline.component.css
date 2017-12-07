@@ -51,7 +51,8 @@
   /*cursor: pointer;*/
   position: relative;
   left: 0;
-  background-color: #DDD;
+  background-color: lightgray;
+  border-color: lightgray;
   margin: 1.0em;
   padding: .3em 0;
   /*height: 3.0em;*/
@@ -66,26 +67,27 @@
 .events .date {
   display: inline-block;
   font-size: large;
-  /*color: white;*/
-  /*padding: 0.8em 0.7em 0.8em 0.7em;*/
-  /*background-color: #607D8B;*/
   line-height: 1em;
-  /*left: -1px;*/
-  /*top: -4px;*/
-  /*height: 1.8em;*/
   margin-right: .8em;
   border-radius: 6px;
+  text-align: center;
+  padding-bottom: 0.2em;
+
+  background-color: white;
+  border: solid thin darkgray;
+
 }
 
-.events .edit-event {
-  font-size: small;
-  float: left;
-  padding-left: 0.5em;
-}
-
-.events .edit-event:hover {
+.events .date:hover {
   cursor: pointer;
 }
+
+.events .date.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .events .save-event {
   font-size: small;
@@ -99,6 +101,7 @@
 
 .events .delete-event {
   font-size: small;
+  min-width: 20px;
   float: right;
   padding-right: 0.5em;
 }
@@ -106,41 +109,50 @@
   cursor: pointer;
 }
 
-
-
-
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .events .title {
-  font-size: medium;
+  font-size: small;
   color: #555555;
-  padding-top: 0.2em;
-  /*padding-bottom: 0.8em;*/
-  /*padding: 0.8em 0.7em 0 0.7em;*/
-  /*background-color: #607D8B;*/
-  /*line-height: 1em;*/
-  /*left: -1px;*/
-  /*top: -4px;*/
-  /*height: 1.8em;*/
-  /*margin-right: .8em;*/
-  /*border-radius: 6px;*/
+  text-align: center;
+  width: 30em;
+  border-radius: 6px;
+
+  background-color: white;
+  border: solid thin darkgray;
 }
+
+.events .title:hover {
+  cursor: pointer;
+}
+
+.events .title.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .events .details {
   font-size: small;
   text-align: justify;
   color: #555555;
-  /*border: solid 1px;*/
-  /*padding-top: 0.2em;*/
-  /*padding-bottom: 0.8em;*/
-  /*background-color: #607D8B;*/
-  /*line-height: 1em;*/
-  /*left: -1px;*/
-  /*top: -4px;*/
-  /*height: 1.8em;*/
-  /*margin-right: .8em;*/
-  /*border-radius: 6px;*/
   padding: 0.2em 0.5em 0.2em 0.5em;
+  width: 40em;
+
+  background-color: white;
+  border: solid thin darkgray;
 }
+
+.events .details:hover {
+  cursor: pointer;
+}
+
+.events .details.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
 
 .events .details .text-details {
   padding: 0.5em 0.2em 0 0.2em;

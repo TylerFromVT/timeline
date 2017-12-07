@@ -26,19 +26,35 @@
 
 <ul class="events" *ngIf="timeline">
   <li *ngFor="let event of timeline.filteredEvents">
-    <div class="date">{{event.date.toDisplayString()}}</div>
-    <i *ngIf="event.readOnly" class="fa fa-pencil-square-o edit-event" (click)="onEditEvent(gah, event)"></i>
-    <i *ngIf="!event.readOnly" class="fa fa-save save-event" (click)="onSaveEvent(gah, event)"></i>
-    <i class="fa fa-trash-o delete-event" (click)="onDeleteEvent(event)"></i>
-    <div>
-      <input #gah type="text" class="title" [(ngModel)]="event.title" placeholder="title" readonly>
+    <div #nick>
+      <input #date class="date"
+             [ngClass]="{'readonly': event.dateIsReadOnly}"
+             [(ngModel)]="event.date.dateString"
+             (click)="onEditDate(date, event)"
+             (keyup.enter)="onSaveEvent(date, event)"
+             readonly>
+
+      <i class="delete-event fa fa-trash-o" (click)="onDeleteEvent(event)"></i>
+
+      <input #title type="text" class="title"
+             [ngClass]="{'readonly': event.titleIsReadOnly}"
+             [(ngModel)]="event.title"
+             (click)="onEditTitle(title, event)"
+             (keyup.enter)="onSaveEvent(title, event)"
+             readonly>
+
+      <hr *ngIf="event.details">
+      <div *ngIf="event.details">
+        <input #details class="details"
+               [ngClass]="{'readonly': event.detailsAreReadOnly}"
+               [(ngModel)]="event.details"
+               (click)="onEditDetails(details, event)"
+               (keyup.enter)="onSaveEvent(details, event)"
+               readonly>
+      </div>
+      <!--<div class="image">-->
+      <!--<img width=25% src="/assets/Tree.jpg">-->
+      <!--</div>-->
     </div>
-    <hr *ngIf="event.details">
-    <div class="details" *ngIf="event.details">
-      {{event.details}}
-    </div>
-    <!--<div class="image">-->
-    <!--<img width=25% src="/assets/Tree.jpg">-->
-    <!--</div>-->
   </li>
 </ul>
