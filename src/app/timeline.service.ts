@@ -23,6 +23,7 @@ export class TimelineService {
   url: string;
   addEventURL: string;
   updateURL: string;
+  deleteURL: string;
 
 
   getTimeline(): Observable<any[]> {

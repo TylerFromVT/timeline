@@ -49,13 +49,6 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  onEditEvent(element: any, timelineEvent: TimelineEvent) {
-    timelineEvent.readOnly = false;
-
-    element.querySelector('.date').removeAttribute('readonly');
-    element.querySelector('.title').removeAttribute('readonly');
-    element.querySelector('.details').removeAttribute('readonly');
-  }
 
   onEditDate(element: any, timelineEvent: TimelineEvent) {
     timelineEvent.dateIsReadOnly = false;
@@ -82,7 +75,6 @@ export class TimelineComponent implements OnInit {
       this.timeline = new Timeline(gah);
       this.timeline.filter(this.enabledKeywords);
     });
-    timelineEvent.readOnly = true;
     element.setAttribute('readonly', '');
   }
 

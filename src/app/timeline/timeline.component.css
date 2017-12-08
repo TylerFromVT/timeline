@@ -1,56 +1,39 @@
 .controls {
-  width: 60%;
-  margin: auto;
-  background: lightgray;
-  border: solid 2px  darkgray;
-  padding: 10px;
-  height: 175px;
-  font-size: small;
   font-family: "Gill Sans", sans-serif;
 }
 
 .keyword-selector {
-  width: 40%;
-  /*border: solid 1px;*/
-  float: left;
+  border-radius: 10px;
+  /*border: solid thin black;*/
+  background-color: lightgray;
 }
 
 .keyword-selector > label {
   font-size: medium;
-  padding: .5em 0 0 1.0em;
+  /*padding: .5em 0 0 1.0em;*/
 }
-
-.add-event {
-  margin-left: 15%;
-  text-align: center;
-  /*border: solid 1px;*/
-}
-
-
 
 .keywords {
   list-style-type: none;
 }
 
-.keywords li {
-  position: relative;
-  left: 0;
-  padding: .3em 0;
-  /*text-align: center;*/
+/* ++++++++++++++++++++++++++++++++ */
+
+.add-event {
+  background-color: lightgray;
+  /*border: solid thin black;*/
 }
 
+/* ++++++++++++++++++++++++++++++++ */
+
 .events {
-  /*margin: 0 0 2em 0;*/
   list-style-type: none;
-  padding: 0;
-  width: 40em;
-  margin: auto
 }
 
 .events li {
-  /*cursor: pointer;*/
-  position: relative;
-  left: 0;
+  /*cursor: text;*/
+  /*position: relative;*/
+  /*left: 0;*/
   background-color: lightgray;
   border-color: lightgray;
   margin: 1.0em;
@@ -58,20 +41,17 @@
   /*height: 3.0em;*/
   border-radius: 10px;
   text-align: center;
-
-
-  font-size: small;
-  font-family: "Gill Sans", sans-serif;
 }
 
+
 .events .date {
-  display: inline-block;
+  /*display: inline-block;*/
   font-size: large;
-  line-height: 1em;
+  /*line-height: 1em;*/
   margin-right: .8em;
   border-radius: 6px;
-  text-align: center;
-  padding-bottom: 0.2em;
+  text-align: left;
+  padding-left: 0.5em;
 
   background-color: white;
   border: solid thin darkgray;
@@ -79,7 +59,7 @@
 }
 
 .events .date:hover {
-  cursor: pointer;
+  cursor: text;
 }
 
 .events .date.readonly {
@@ -89,41 +69,20 @@
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.events .save-event {
-  font-size: small;
-  float: left;
-  padding-left: 0.5em;
-}
-
-.events .save-event:hover {
-  cursor: pointer;
-}
-
-.events .delete-event {
-  font-size: small;
-  min-width: 20px;
-  float: right;
-  padding-right: 0.5em;
-}
-.events .delete-event:hover {
-  cursor: pointer;
-}
-
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .events .title {
-  font-size: small;
-  color: #555555;
-  text-align: center;
-  width: 30em;
+  font-size: medium;
+  color: darkslategray;
+  width: 95%;
   border-radius: 6px;
+  text-align: left;
+  padding: 0.2em 0 0 1.5em;
 
   background-color: white;
   border: solid thin darkgray;
 }
 
 .events .title:hover {
-  cursor: pointer;
+  cursor: text;
 }
 
 .events .title.readonly {
@@ -131,21 +90,32 @@
   border: solid thin lightgray;
 }
 
+.events .delete-event {
+  font-size: medium;
+  float: right;
+  padding-top: 0.5em;
+}
+.events .delete-event:hover {
+  cursor: pointer;
+}
+
+
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .events .details {
   font-size: small;
-  text-align: justify;
-  color: #555555;
-  padding: 0.2em 0.5em 0.2em 0.5em;
-  width: 40em;
+  text-align: left;
+  color: dimgray;
+  width: 98%;
+  resize: none;
+
 
   background-color: white;
   border: solid thin darkgray;
 }
 
 .events .details:hover {
-  cursor: pointer;
+  cursor: text;
 }
 
 .events .details.readonly {
@@ -159,9 +129,14 @@
 }
 
 
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+
 
 .events .image {
-  padding-bottom: 10px;
+  padding: 0 0.5em 0em 0;
 }
 
 .events img {

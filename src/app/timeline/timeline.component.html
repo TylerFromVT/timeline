@@ -1,60 +1,97 @@
-<div class="controls">
+<div class="container controls">
 
-  <div class="keyword-selector">
-    <label class="title">Keywords</label>
-    <ul class="keywords" *ngIf="timeline">
-      <li *ngFor="let keyword of timeline.keywords">
-        <label class="container">
-          <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
-        </label>{{keyword}}
-      </li>
-    </ul>
-  </div>
+    <div class="row">
 
-  <div class="add-event">
-    <i class="fa fa-plus-circle fa-4x"></i>
-    <div><label>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #date type="text"></label></div>
-    <div><label>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #title type="text"></label></div>
-    <div><label>Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #details type="text"></label></div>
-    <div><label>Keywords:&nbsp;<input #keywords type="text"></label></div>
-    <div>
-      <button (click)="onAddEvent(date.value, title.value, details.value, keywords.value)">Submit</button>
+      <div class="col-sm">
+        <div class="keyword-selector">
+          <div>Keywords</div>
+          <ul class="keywords" *ngIf="timeline">
+            <li *ngFor="let keyword of timeline.keywords">
+              <label class="container">
+                <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
+                {{keyword}}
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="add-event">
+          <i class="fa fa-plus-circle fa-2x"></i>
+          <div><label>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #date type="text"></label></div>
+          <div><label>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #title type="text"></label></div>
+          <div><label>Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input #details type="text"></label></div>
+          <div><label>Keywords:&nbsp;<input #keywords type="text"></label></div>
+          <div>
+            <button (click)="onAddEvent(date.value, title.value, details.value, keywords.value)">Submit</button>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+  <div class="row justify-content-center">
+
+    <div class="col-sm">
+
+      <ul class="events" *ngIf="timeline">
+
+        <li *ngFor="let event of timeline.filteredEvents">
+
+          <div #nick class="row">
+
+            <div class="col-sm-10">
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <input #date class="date"
+                         [ngClass]="{'readonly': event.dateIsReadOnly}"
+                         [(ngModel)]="event.date.dateString"
+                         (click)="onEditDate(date, event)"
+                         (keyup.enter)="onSaveEvent(date, event)"
+                         readonly>
+                </div>
+
+                <div class="col-sm">
+                  <input #title type="text" class="title"
+                         [ngClass]="{'readonly': event.titleIsReadOnly}"
+                         [(ngModel)]="event.title"
+                         (click)="onEditTitle(title, event)"
+                         (keyup.enter)="onSaveEvent(title, event)"
+                         readonly>
+                  <i class="delete-event fa fa-trash-o" (click)="onDeleteEvent(event)"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm">
+                  <div *ngIf="event.details">
+                    <textarea #details class="details"
+                           [ngClass]="{'readonly': event.detailsAreReadOnly}"
+                           [(ngModel)]="event.details"
+                           (click)="onEditDetails(details, event)"
+                           (keyup.enter)="onSaveEvent(details, event)"
+                            readonly></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-2">
+              <div class="image">
+              <img width=100% src="/assets/Tree.jpg">
+              </div>
+            </div>
+
+          </div>
+
+        </li>
+
+      </ul>
+    </div>
+
   </div>
 
 </div>
 
-<ul class="events" *ngIf="timeline">
-  <li *ngFor="let event of timeline.filteredEvents">
-    <div #nick>
-      <input #date class="date"
-             [ngClass]="{'readonly': event.dateIsReadOnly}"
-             [(ngModel)]="event.date.dateString"
-             (click)="onEditDate(date, event)"
-             (keyup.enter)="onSaveEvent(date, event)"
-             readonly>
-
-      <i class="delete-event fa fa-trash-o" (click)="onDeleteEvent(event)"></i>
-
-      <input #title type="text" class="title"
-             [ngClass]="{'readonly': event.titleIsReadOnly}"
-             [(ngModel)]="event.title"
-             (click)="onEditTitle(title, event)"
-             (keyup.enter)="onSaveEvent(title, event)"
-             readonly>
-
-      <hr *ngIf="event.details">
-      <div *ngIf="event.details">
-        <input #details class="details"
-               [ngClass]="{'readonly': event.detailsAreReadOnly}"
-               [(ngModel)]="event.details"
-               (click)="onEditDetails(details, event)"
-               (keyup.enter)="onSaveEvent(details, event)"
-               readonly>
-      </div>
-      <!--<div class="image">-->
-      <!--<img width=25% src="/assets/Tree.jpg">-->
-      <!--</div>-->
-    </div>
-  </li>
-</ul>
