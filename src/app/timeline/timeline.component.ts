@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ElementRef} from '@angular/core';
+import {Component, OnInit, Input, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
 import { TimelineService } from '../timeline.service';
 import { Timeline } from '../timeline';
 import {TimelineEvent} from '../timeline-event';
@@ -8,46 +8,46 @@ import {TimelineEvent} from '../timeline-event';
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements OnInit, OnChanges {
 
-  constructor(private timelineService: TimelineService) {
-    console.debug('Timeline Component: constructor');
-    this.enabledKeywords = new Set();
-  }
+  @Input() timelineData: any[];
+  @Input() enabledKeywords: string[] = [];
 
   timeline: Timeline;
-  private enabledKeywords: Set<string>;
 
-  ngOnInit() {
-    console.debug('Timeline Component: OnInit');
-    this.enabledKeywords.add('Brown');
-    this.timelineService.getTimeline().subscribe(gah => {
-      console.log('ngOnInit callback');
-      this.timeline = new Timeline(gah);
-      this.timeline.filter(this.enabledKeywords);
-    });
-  }
+  constructor(private timelineService: TimelineService) {}
 
-  onClick(keyword: string, checked: boolean) {
-    if (checked) {
-      this.enabledKeywords.add(keyword);
-    } else {
-      this.enabledKeywords.delete(keyword);
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('timelineComponent.ngOnChanges()');
+
+    if (changes['timelineData']) {
+      this.timelineData = changes['timelineData'].currentValue;
     }
-    this.timeline.filter(this.enabledKeywords);
+    if (changes['enabledKeywords'] && changes['enabledKeywords'].currentValue) {
+      this.enabledKeywords = changes['enabledKeywords'].currentValue;
+    }
+
+    if (this.timelineData && this.enabledKeywords) {
+      this.timeline = new Timeline(this.timelineData);
+      this.timeline.filter(this.enabledKeywords);
+    }
   }
 
-  onAddEvent(date, title, details, keywords) {
-    console.log('onAddEvent');
-    console.log(keywords);
-    const keywordList = keywords.split(',');
-    console.log(keywordList);
-    this.timelineService.addEvent(date, title, details, keywordList).subscribe(gah => {
-      console.log(JSON.stringify(gah));
-      this.timeline = new Timeline(gah);
-      this.timeline.filter(this.enabledKeywords);
-    });
-  }
+
+
+  // onAddEvent(date, title, details, keywords) {
+  //   console.log('onAddEvent');
+  //   console.log(keywords);
+  //   const keywordList = keywords.split(',');
+  //   console.log(keywordList);
+  //   this.timelineService.addEvent(date, title, details, keywordList).subscribe(gah => {
+  //     console.log(JSON.stringify(gah));
+  //     this.timeline = new Timeline(gah);
+  //     this.timeline.filter(this.enabledKeywords);
+  //   });
+  // }
 
 
   onEditDate(element: any, timelineEvent: TimelineEvent) {

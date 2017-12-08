@@ -7,12 +7,14 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { TimelineService } from './timeline.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { KeywordComponent } from './keyword/keyword.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimelineComponent
+    TimelineComponent,
+    KeywordComponent
   ],
   imports: [
     BrowserModule,

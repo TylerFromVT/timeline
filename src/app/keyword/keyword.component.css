@@ -1,0 +1,18 @@
+.controls {
+  font-family: "Gill Sans", sans-serif;
+}
+
+.keyword-selector {
+  border-radius: 10px;
+  /*border: solid thin black;*/
+  background-color: lightgray;
+}
+
+.keyword-selector > label {
+  font-size: medium;
+  /*padding: .5em 0 0 1.0em;*/
+}
+
+.keywords {
+  list-style-type: none;
+}

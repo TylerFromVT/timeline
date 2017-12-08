@@ -1,7 +1,19 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>{{title}}</h1>
+<p></p>
+
+<div class="container controls">
+
+  <div class="row">
+    <div class="col-sm">
+      <app-keyword [timelineData]="timelineData" (onKeywordUpdate)="onUpdateToEnabledKeywords($event)"></app-keyword>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <app-timeline [timelineData]="timelineData" [enabledKeywords]="enabledKeywords"></app-timeline>
+    </div>
+  </div>
+
 </div>
 
-<app-timeline></app-timeline>
 
