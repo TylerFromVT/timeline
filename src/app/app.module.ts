@@ -8,13 +8,15 @@ import { TimelineService } from './timeline.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { KeywordComponent } from './keyword/keyword.component';
+import { EventComponent } from './timeline/event/event.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimelineComponent,
-    KeywordComponent
+    KeywordComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

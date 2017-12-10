@@ -1,5 +1,4 @@
-import {Component, OnInit, Input, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
-import { TimelineService } from '../timeline.service';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output} from '@angular/core';
 import { Timeline } from '../timeline';
 import {TimelineEvent} from '../timeline-event';
 
@@ -12,10 +11,12 @@ export class TimelineComponent implements OnInit, OnChanges {
 
   @Input() timelineData: any[];
   @Input() enabledKeywords: string[] = [];
+  @Output() emitEvent = new EventEmitter<TimelineEvent>();
+  @Output() emitDeleteEvent = new EventEmitter<TimelineEvent>();
 
   timeline: Timeline;
 
-  constructor(private timelineService: TimelineService) {}
+  constructor() {}
 
   ngOnInit() {}
 
@@ -35,8 +36,6 @@ export class TimelineComponent implements OnInit, OnChanges {
     }
   }
 
-
-
   // onAddEvent(date, title, details, keywords) {
   //   console.log('onAddEvent');
   //   console.log(keywords);
@@ -49,41 +48,11 @@ export class TimelineComponent implements OnInit, OnChanges {
   //   });
   // }
 
-
-  onEditDate(element: any, timelineEvent: TimelineEvent) {
-    timelineEvent.dateIsReadOnly = false;
-    timelineEvent.showSave = true;
-    element.removeAttribute('readonly');
+  onDeleteEvent(event: TimelineEvent) {
+    this.emitDeleteEvent.emit(event);
   }
 
-  onEditTitle(element: any, timelineEvent: TimelineEvent) {
-    timelineEvent.titleIsReadOnly = false;
-    timelineEvent.showSave = true;
-    element.removeAttribute('readonly');
-  }
-
-  onEditDetails(element: any, timelineEvent: TimelineEvent) {
-    timelineEvent.detailsAreReadOnly = false;
-    timelineEvent.showSave = true;
-    element.removeAttribute('readonly');
-  }
-
-  onSaveEvent(element: any, timelineEvent: TimelineEvent) {
-    this.timelineService.update(timelineEvent).subscribe(gah => {
-      console.log('OnSaveEvent callback');
-      console.log(gah);
-      this.timeline = new Timeline(gah);
-      this.timeline.filter(this.enabledKeywords);
-    });
-    element.setAttribute('readonly', '');
-  }
-
-  onDeleteEvent(timelineEvent: TimelineEvent) {
-    this.timelineService.delete(timelineEvent).subscribe(gah => {
-      console.log('OnDeleteEvent callback');
-      console.log(gah);
-      this.timeline = new Timeline(gah);
-      this.timeline.filter(this.enabledKeywords);
-    });
+  onUpdateEvent(event: TimelineEvent) {
+    this.emitEvent.emit(event);
   }
 }
