@@ -88,14 +88,38 @@
   border: solid thin lightgray;
 }
 
-
 .details .text-details {
   padding: 0.5em 0.2em 0 0.2em;
 }
 
-
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
+.keywords {
+  font-size: small;
+  text-align: left;
+  padding: 1.0em 0 0 1.0em;
+}
+
+.keywords-label {
+  padding-top: 0.1em;
+}
+
+.keywords-input {
+  font-size: small;
+  text-align: left;
+  font-style: italic;
+  color: dimgray;
+  width: 95%
+}
+
+.keywords-input:hover {
+  cursor: text;
+}
+
+.keywords-input.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
 
 
 
