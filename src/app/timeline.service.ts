@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
 import {TimelineEvent} from './timeline-event';
+import {EventData} from './event-data';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -31,16 +32,9 @@ export class TimelineService {
     return this.http.get<any[]>(this.url);
   }
 
-  addEvent(date: string, title: string, details: string, keywords: string[]): Observable<any[]> {
+  add(eventData: EventData): Observable<any[]> {
     console.log('timelineService.addEvent');
-    const event = {
-      date: date,
-      title: title,
-      details: details,
-      keywords: keywords
-    };
-    return this.http.post<any[]>(this.addEventURL, event, httpOptions);
-
+    return this.http.post<any[]>(this.addEventURL, eventData, httpOptions);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

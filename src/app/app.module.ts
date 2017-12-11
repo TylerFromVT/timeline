@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { KeywordComponent } from './keyword/keyword.component';
 import { EventComponent } from './timeline/event/event.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { EventComponent } from './timeline/event/event.component';
     AppComponent,
     TimelineComponent,
     KeywordComponent,
-    EventComponent
+    EventComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,

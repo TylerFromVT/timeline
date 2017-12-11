@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Timeline} from './timeline';
 import {TimelineService} from './timeline.service';
 import {TimelineEvent} from './timeline-event';
+import {EventData} from './event-data';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,15 @@ export class AppComponent implements OnInit {
       this.timelineData = timelineData;
     });
   }
+
+  addEvent(event: EventData) {
+    this.timelineService.add(event).subscribe(timelineData => {
+      console.log('onAddEvent callback');
+      console.log(timelineData);
+      this.timelineData = timelineData;
+    });
+  }
+
 
   onUpdateToEnabledKeywords(enabledKeywords: Set<string>) {
     console.log('appComponent.onUpdateToEnabledKeywords');

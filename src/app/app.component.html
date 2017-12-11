@@ -3,8 +3,14 @@
 <div class="container controls">
 
   <div class="row">
-    <div class="col-sm">
-      <app-keyword [timelineData]="timelineData" (onKeywordUpdate)="onUpdateToEnabledKeywords($event)"></app-keyword>
+    <div class="col-sm-6">
+      <app-keyword
+        [timelineData]="timelineData"
+        (onKeywordUpdate)="onUpdateToEnabledKeywords($event)">
+      </app-keyword>
+    </div>
+    <div class="col-sm-6">
+      <app-add-event (emitEvent)="addEvent($event)"></app-add-event>
     </div>
   </div>
 

@@ -2,16 +2,23 @@ import { TimelineDate } from './timeline-date';
 
 export class TimelineEvent {
 
-  constructor(x) {
-    this.id = x.id;
-    this.title = x.title;
-    this.details = x.details;
-    this.keywords = x.keywords;
-    this.date = new TimelineDate(x.date);
-    this.showSave = false;
-    this.dateIsReadOnly = true;
-    this.titleIsReadOnly = true;
-    this.detailsAreReadOnly = true;
+  constructor(eventData) {
+
+    this.date = new TimelineDate(null);
+    this.title = '';
+    this.details = '';
+
+    if (eventData) {
+      this.id = eventData.id;
+      this.title = eventData.title;
+      this.details = eventData.details;
+      this.keywords = eventData.keywords;
+      this.date = new TimelineDate(eventData.date);
+      this.showSave = false;
+      this.dateIsReadOnly = true;
+      this.titleIsReadOnly = true;
+      this.detailsAreReadOnly = true;
+    }
   }
 
   id: number;

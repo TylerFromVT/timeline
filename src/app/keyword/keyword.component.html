@@ -1,20 +1,20 @@
 <div class="controls">
   <div class="row">
-
     <div class="col-sm">
       <div class="keyword-selector">
-        <div>Keywords</div>
+        <div class="title">Keywords</div>
         <ul class="keywords" *ngIf="keywords">
           <li *ngFor="let keyword of keywords">
             <label class="container">
-              <input #keywordcheckbox type="checkbox" (click)="onClick(keyword, keywordcheckbox.checked)">
+              <input #keywordcheckbox
+                     type="checkbox"
+                     (click)="onClick(keyword, keywordcheckbox.checked)">
               {{keyword}}
             </label>
           </li>
         </ul>
       </div>
     </div>
-
   </div>
 </div>
 

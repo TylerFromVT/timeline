@@ -1,0 +1,40 @@
+.add-event {
+  background-color: lightgray;
+  border-radius: 10px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: small;
+}
+
+.title {
+  padding: 0.5em 0 0.5em 1.0em;
+  font-size: medium;
+}
+
+.date-title {
+  padding-left: 1.0em;
+}
+
+.title-input {
+  width: 90%;
+  alignment: right;
+}
+
+.details {
+  padding: 1.0em 0 0 1.0em;
+}
+
+textarea {
+  width: 95%;
+  alignment: right;
+}
+
+.add-button {
+  text-align: center;
+  padding: 1.0em 0 1.0em 0;
+}
+
+.add-button:hover {
+  cursor: pointer;
+}
+
+

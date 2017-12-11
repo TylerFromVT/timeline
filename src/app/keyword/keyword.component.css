@@ -2,15 +2,19 @@
   font-family: "Gill Sans", sans-serif;
 }
 
+.title {
+  padding: 0.5em 0 0.5em 1.0em;
+  font-size: medium;
+}
+
 .keyword-selector {
   border-radius: 10px;
   /*border: solid thin black;*/
   background-color: lightgray;
 }
 
-.keyword-selector > label {
-  font-size: medium;
-  /*padding: .5em 0 0 1.0em;*/
+.container {
+  font-size: small;
 }
 
 .keywords {

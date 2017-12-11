@@ -1,0 +1,22 @@
+<div class="add-event">
+  <div class="row title">
+    <div class="col-sm">Add Event</div>
+  </div>
+  <div class="row date-title">
+    <div class="col-sm-1 date-label">Date:</div>
+    <div class="col-sm-4"><input #date [(ngModel)]="eventData.date"></div>
+    <div class="col-sm-1 title-title">Title:</div>
+    <div class="col-sm"><input #title class="title-input" [(ngModel)]="eventData.title"></div>
+  </div>
+  <div class="row details">
+    <div class="col-sm-1 details-label">Details:</div>
+    <div class="col-sm details-text-area">
+      <textarea #details [(ngModel)]="eventData.details"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm add-button">
+      <i class="fa fa-plus-circle fa-2x" (click)="addEvent()"></i>
+    </div>
+  </div>
+</div>

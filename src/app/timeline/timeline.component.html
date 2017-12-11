@@ -35,7 +35,9 @@
     <div class="col-sm">
       <ul class="events" *ngIf="timeline">
         <li *ngFor="let event of timeline.filteredEvents">
-          <app-event [event]="event" (emitUpdateEvent)="onUpdateEvent($event)" (emitDeleteEvent)="onDeleteEvent($event)"></app-event>
+          <app-event
+            [event]="event" (emitUpdateEvent)="onUpdateEvent($event)"
+            (emitDeleteEvent)="onDeleteEvent($event)"></app-event>
         </li>
       </ul>
     </div>
