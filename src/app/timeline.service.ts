@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Timeline} from './timeline';
-import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
@@ -27,8 +25,8 @@ export class TimelineService {
   deleteURL: string;
 
 
-  getTimeline(): Observable<any[]> {
-    console.log('timelineService.getTimeline');
+  get(): Observable<any[]> {
+    console.log('timelineService.get');
     return this.http.get<any[]>(this.url);
   }
 

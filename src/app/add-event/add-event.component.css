@@ -14,18 +14,33 @@
   padding-left: 1.0em;
 }
 
+.date-input {
+  border: thin solid darkgray;
+}
+
 .title-input {
   width: 90%;
-  alignment: right;
+  border: thin solid darkgray;
 }
 
 .details {
   padding: 1.0em 0 0 1.0em;
 }
 
+
 textarea {
   width: 95%;
   alignment: right;
+  border: thin solid darkgray;
+}
+
+.keywords {
+  padding: 1.0em 0 0 1.0em;
+}
+
+.keywords-input {
+  width: 95%;
+  border: thin solid darkgray;
 }
 
 .add-button {

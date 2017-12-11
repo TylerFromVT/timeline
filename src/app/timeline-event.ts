@@ -1,38 +1,37 @@
-import { TimelineDate } from './timeline-date';
+import {EventData} from './event-data';
 
 export class TimelineEvent {
 
-  constructor(eventData) {
-
-    this.date = new TimelineDate(null);
-    this.title = '';
-    this.details = '';
-
-    if (eventData) {
-      this.id = eventData.id;
-      this.title = eventData.title;
-      this.details = eventData.details;
-      this.keywords = eventData.keywords;
-      this.date = new TimelineDate(eventData.date);
-      this.showSave = false;
-      this.dateIsReadOnly = true;
-      this.titleIsReadOnly = true;
-      this.detailsAreReadOnly = true;
-    }
+  constructor(eventData: EventData) {
+    this._eventData = eventData;
   }
 
-  id: number;
-  date: TimelineDate;
-  title: string;
-  details: string;
-  keywords: string[];
-  showSave: boolean;
-  dateIsReadOnly: boolean;
-  titleIsReadOnly: boolean;
-  detailsAreReadOnly: boolean;
+  private _eventData: EventData;
+
+  get id(): number {return this._eventData ? this._eventData.id : null; }
+  get date(): string {return this._eventData ? this._eventData.date : null; }
+  get title(): string {return this._eventData ? this._eventData.title : null; }
+  get details(): string {return this._eventData ? this._eventData.details : null; }
+  get keywords(): string[] {return this._eventData ? this._eventData.keywords : []; }
 
   toString() {
-    return this.date.toString();
+    let x: string;
+    const parts = this.date.split(/[\s,]+/);
+    switch (parts.length) {
+      case 1:
+        x = parts[0];
+        break;
+
+      case 2:
+        x = parts[1] + new Date(this.date).getMonth().toString().padStart(2, '0');
+        break;
+
+      case 3:
+        x = parts[2] + new Date(this.date).getMonth().toString().padStart(2, '0') + parts[1].padStart(2, '0');
+        break;
+    }
+
+    return x;
   }
 
 }

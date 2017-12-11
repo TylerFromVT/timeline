@@ -17,20 +17,19 @@ export class AppComponent implements OnInit {
   constructor(private timelineService: TimelineService) {}
 
   ngOnInit(): void {
-    this.timelineService.getTimeline().subscribe(timelineData => {
+    this.timelineService.get().subscribe(timelineData => {
       console.log('appComponent.ngOnInit: Timeline data retrieved');
       this.timelineData = timelineData;
     });
   }
 
-  addEvent(event: EventData) {
-    this.timelineService.add(event).subscribe(timelineData => {
+  addEvent(eventData: EventData) {
+    this.timelineService.add(eventData).subscribe(timelineData => {
       console.log('onAddEvent callback');
       console.log(timelineData);
       this.timelineData = timelineData;
     });
   }
-
 
   onUpdateToEnabledKeywords(enabledKeywords: Set<string>) {
     console.log('appComponent.onUpdateToEnabledKeywords');

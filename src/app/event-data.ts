@@ -1,5 +1,6 @@
 export class EventData {
 
+  id: number;
   date: string;
   title: string;
   details: string;
@@ -11,6 +12,4 @@ export class EventData {
     this.details = '';
     this.keywords = [];
   }
-
-
 }

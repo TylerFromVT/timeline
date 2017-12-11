@@ -3,15 +3,21 @@
     <div class="col-sm">Add Event</div>
   </div>
   <div class="row date-title">
-    <div class="col-sm-1 date-label">Date:</div>
-    <div class="col-sm-4"><input #date [(ngModel)]="eventData.date"></div>
+    <div class="col-sm-2 date-label">Date:</div>
+    <div class="col-sm-4"><input #date [(ngModel)]="eventData.date" class="date-input"></div>
     <div class="col-sm-1 title-title">Title:</div>
     <div class="col-sm"><input #title class="title-input" [(ngModel)]="eventData.title"></div>
   </div>
   <div class="row details">
-    <div class="col-sm-1 details-label">Details:</div>
+    <div class="col-sm-2 details-label">Details:</div>
     <div class="col-sm details-text-area">
       <textarea #details [(ngModel)]="eventData.details"></textarea>
+    </div>
+  </div>
+  <div class="row keywords">
+    <div class="col-sm-2 details-label">Keywords:</div>
+    <div class="col-sm details-text-area">
+      <input #keywords [(ngModel)]="keywordString" class="keywords-input">
     </div>
   </div>
   <div class="row">

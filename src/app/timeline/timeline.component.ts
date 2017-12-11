@@ -31,6 +31,9 @@ export class TimelineComponent implements OnInit, OnChanges {
     }
 
     if (this.timelineData && this.enabledKeywords) {
+      console.log('Building timeline and filtering');
+      console.log(this.timelineData);
+      console.log(this.enabledKeywords);
       this.timeline = new Timeline(this.timelineData);
       this.timeline.filter(this.enabledKeywords);
     }
