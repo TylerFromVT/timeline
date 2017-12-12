@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output} from '@angular/core';
-import { Timeline } from '../timeline';
 import {TimelineEvent} from '../timeline-event';
+import {EventData} from '../event-data';
 
 @Component({
   selector: 'app-timeline',
@@ -9,31 +9,55 @@ import {TimelineEvent} from '../timeline-event';
 })
 export class TimelineComponent implements OnInit, OnChanges {
 
-  @Input() timelineData: any[];
-  @Input() enabledKeywords: string[] = [];
+  @Input() timelineData: EventData[];
+  @Input() enabledKeywords: string[];
   @Output() emitEvent = new EventEmitter<TimelineEvent>();
   @Output() emitDeleteEvent = new EventEmitter<TimelineEvent>();
 
-  timeline: Timeline;
+  events: TimelineEvent[];  // Can this be EvenData[]?
+  private _timelineData: EventData[];
+  private _enabledKeywords: string[];
 
-  constructor() {}
+  constructor() {
+    this.timelineData = [];
+    this._timelineData = [];
+    this.enabledKeywords = [];
+    this._enabledKeywords = [];
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['timelineData']) {
-      this.timelineData = changes['timelineData'].currentValue;
+
+    if (changes['timelineData'] && changes['timelineData'].currentValue) {
+      this._timelineData = changes['timelineData'].currentValue;
     }
     if (changes['enabledKeywords'] && changes['enabledKeywords'].currentValue) {
-      this.enabledKeywords = changes['enabledKeywords'].currentValue;
+      this._enabledKeywords = changes['enabledKeywords'].currentValue;
     }
 
-    if (this.timelineData && this.enabledKeywords) {
-      this.timeline = new Timeline(this.timelineData);
-      this.timeline.filter(this.enabledKeywords);
+    filterEvents.call(this);
+
+    function filterEvents() {
+      this.events = [];
+      for (const event of this._timelineData) {
+        const timelineEvent = new TimelineEvent(event);
+        if (this.findOne(this._enabledKeywords, timelineEvent.keywords) === true) {
+          this.events.push(timelineEvent);
+        }
+      }
+      this.events.sort();
     }
   }
 
+  findOne(haystack, arr) {
+    if (arr.length) {
+      return arr.some(function (v) {
+        return Array.from(haystack).indexOf(v) >= 0;
+      });
+    }
+  }
 
   onDeleteEvent(event: TimelineEvent) {
     this.emitDeleteEvent.emit(event);
