@@ -21,8 +21,6 @@ export class TimelineComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('timelineComponent.ngOnChanges()');
-
     if (changes['timelineData']) {
       this.timelineData = changes['timelineData'].currentValue;
     }
@@ -31,25 +29,11 @@ export class TimelineComponent implements OnInit, OnChanges {
     }
 
     if (this.timelineData && this.enabledKeywords) {
-      console.log('Building timeline and filtering');
-      console.log(this.timelineData);
-      console.log(this.enabledKeywords);
       this.timeline = new Timeline(this.timelineData);
       this.timeline.filter(this.enabledKeywords);
     }
   }
 
-  // onAddEvent(date, title, details, keywords) {
-  //   console.log('onAddEvent');
-  //   console.log(keywords);
-  //   const keywordList = keywords.split(',');
-  //   console.log(keywordList);
-  //   this.timelineService.addEvent(date, title, details, keywordList).subscribe(gah => {
-  //     console.log(JSON.stringify(gah));
-  //     this.timeline = new Timeline(gah);
-  //     this.timeline.filter(this.enabledKeywords);
-  //   });
-  // }
 
   onDeleteEvent(event: TimelineEvent) {
     this.emitDeleteEvent.emit(event);

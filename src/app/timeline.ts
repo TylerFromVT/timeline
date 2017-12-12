@@ -3,8 +3,6 @@ import {TimelineEvent} from './timeline-event';
 export class Timeline {
 
   constructor(eventList: any[]) {
-    console.debug('Timeline Class: Constructor');
-
     this.keywords = new Set();
     this.events = [];
     this.filteredEvents = [];

@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
-import {TimelineEvent} from './timeline-event';
-import {EventData} from './event-data';
+import {TimelineEvent} from '../timeline-event';
+import {EventData} from '../event-data';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -24,14 +24,14 @@ export class TimelineService {
   updateURL: string;
   deleteURL: string;
 
-  get(): Observable<any[]> {
+  get(): Observable<EventData[]> {
     console.log('timelineService.get');
-    return this.http.get<any[]>(this.url);
+    return this.http.get<EventData[]>(this.url);
   }
 
-  add(eventData: EventData): Observable<any[]> {
+  add(eventData: EventData): Observable<EventData[]> {
     console.log('timelineService.addEvent');
-    return this.http.post<any[]>(this.addEventURL, eventData, httpOptions);
+    return this.http.post<EventData[]>(this.addEventURL, eventData, httpOptions);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -43,12 +43,12 @@ export class TimelineService {
     };
   }
 
-  update(timelineEvent: TimelineEvent): Observable<any[]> {
-    return this.http.put<any[]>(this.updateURL, timelineEvent, httpOptions);
+  update(timelineEvent: TimelineEvent): Observable<EventData[]> {
+    return this.http.put<EventData[]>(this.updateURL, timelineEvent, httpOptions);
   }
 
-  delete(timelineEvent: TimelineEvent): Observable<any[]> {
+  delete(timelineEvent: TimelineEvent): Observable<EventData[]> {
     const url = `${this.deleteURL}/${timelineEvent.id}`;
-    return this.http.delete<any[]>(url, httpOptions);
+    return this.http.delete<EventData[]>(url, httpOptions);
   }
 }
