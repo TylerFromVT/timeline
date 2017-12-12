@@ -9,6 +9,7 @@ export class TimelineEvent {
   private _eventData: EventData;
 
   get eventData(): EventData {return this._eventData; }
+  get id(): number {return this._eventData.id; }
   get keywords(): string[] {return this._eventData ? this._eventData.keywords : []; }
 
   toString() {

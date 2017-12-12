@@ -24,7 +24,6 @@ export class TimelineService {
   updateURL: string;
   deleteURL: string;
 
-
   get(): Observable<any[]> {
     console.log('timelineService.get');
     return this.http.get<any[]>(this.url);
