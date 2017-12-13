@@ -2,12 +2,14 @@ import {TestBed, inject} from '@angular/core/testing';
 
 import {TimelineService} from './timeline.service';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController, TestRequest} from '@angular/common/http/testing';
 import {EventData} from '../event-data';
 
 describe('TimelineService', () => {
   let timelineService: TimelineService;
   let httpMock: HttpTestingController;
+
+  const url = 'http://localhost:3000/timeline';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,16 +28,63 @@ describe('TimelineService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should perform http get', inject([TimelineService], (service: TimelineService) => {
-    service.get().subscribe((events: EventData[]) => {
-      console.log('gah');
-      expect(events[0].keywords[0]).toBe('keyword');
+  describe('Happy Path', () => {
+    let id: number, keyword: string, eventData: EventData, responseBody: EventData[], req: TestRequest;
+
+    beforeEach(() => {
+      id = 47;
+      keyword = 'Some Keyword';
+      eventData = new EventData();
+      eventData.id = id;
+      eventData.keywords = [keyword];
+      responseBody = [eventData];
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/timeline');
-    req.flush([{keywords: ['keyword']}]);
-    httpMock.verify();
-  }));
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should getEvents', inject([TimelineService], (service: TimelineService) => {
+      service.getEvents().subscribe((events: EventData[]) => {
+        expect(events[0].keywords[0]).toBe(keyword);
+      });
+
+      req = httpMock.expectOne(url);
+      req.flush(responseBody);
+    }));
+
+    it('should add event', inject([TimelineService], (service: TimelineService) => {
+      service.addEvent(eventData).subscribe((events: EventData[]) => {
+        expect(events[0].keywords[0]).toBe(keyword);
+      });
+
+      req = httpMock.expectOne(url);
+      req.flush(responseBody);
+    }));
+
+    it('should update event', inject([TimelineService], (service: TimelineService) => {
+      service.updateEvent(eventData).subscribe((events: EventData[]) => {
+        expect(events[0].keywords[0]).toBe(keyword);
+      });
+
+      req = httpMock.expectOne(url);
+      req.flush(responseBody);
+    }));
+
+    it('should deleteEvent event', inject([TimelineService], (service: TimelineService) => {
+      service.deleteEvent(eventData).subscribe((events: EventData[]) => {
+        expect(events[0].keywords[0]).toBe(keyword);
+      });
+
+      req = httpMock.expectOne(url + '/' + id);
+      req.flush(responseBody);
+    }));
+  });
+
+  describe('Unhappy Path', () => {
+
+  });
+
 });
 
 

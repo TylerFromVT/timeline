@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-6">
       <app-keyword
-        [timelineData]="timelineData"
+        [timelineData]="events"
         (onKeywordUpdate)="onUpdateToEnabledKeywords($event)">
       </app-keyword>
     </div>
@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-sm">
       <app-timeline
-        [timelineData]="timelineData"
+        [timelineData]="events"
         [enabledKeywords]="enabledKeywords"
         (emitEvent)="updateEvent($event)"
         (emitDeleteEvent)="deleteEvent($event)"

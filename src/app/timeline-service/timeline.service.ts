@@ -14,24 +14,27 @@ export class TimelineService {
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:3000/timeline';
-    this.addEventURL = 'http://localhost:3000/add';
-    this.updateURL = 'http://localhost:3000/update';
-    this.deleteURL = 'http://localhost:3000/delete';
   }
 
   url: string;
-  addEventURL: string;
-  updateURL: string;
-  deleteURL: string;
 
-  get(): Observable<EventData[]> {
+  getEvents(): Observable<EventData[]> {
     console.log('timelineService.get');
     return this.http.get<EventData[]>(this.url);
   }
 
-  add(eventData: EventData): Observable<EventData[]> {
+  addEvent(eventData: EventData): Observable<EventData[]> {
     console.log('timelineService.addEvent');
-    return this.http.post<EventData[]>(this.addEventURL, eventData, httpOptions);
+    return this.http.post<EventData[]>(this.url, eventData, httpOptions);
+  }
+
+  updateEvent(eventData: EventData): Observable<EventData[]> {
+    return this.http.put<EventData[]>(this.url, eventData, httpOptions);
+  }
+
+  deleteEvent(timelineEvent: TimelineEvent): Observable<EventData[]> {
+    const url = `${this.url}/${timelineEvent.id}`;
+    return this.http.delete<EventData[]>(url, httpOptions);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -43,12 +46,4 @@ export class TimelineService {
     };
   }
 
-  update(timelineEvent: TimelineEvent): Observable<EventData[]> {
-    return this.http.put<EventData[]>(this.updateURL, timelineEvent, httpOptions);
-  }
-
-  delete(timelineEvent: TimelineEvent): Observable<EventData[]> {
-    const url = `${this.deleteURL}/${timelineEvent.id}`;
-    return this.http.delete<EventData[]>(url, httpOptions);
-  }
 }

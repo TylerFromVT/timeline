@@ -10,33 +10,33 @@ import {EventData} from './event-data';
 })
 export class AppComponent implements OnInit {
 
-  timelineData: EventData[];
+  events: EventData[];
   enabledKeywords: string[];
 
   constructor(private timelineService: TimelineService) {
   }
 
   ngOnInit(): void {
-    this.timelineService.get().subscribe(timelineData => {
-      this.timelineData = timelineData;
+    this.timelineService.getEvents().subscribe(events => {
+      this.events = events;
     });
   }
 
   addEvent(eventData: EventData) {
-    this.timelineService.add(eventData).subscribe(timelineData => {
-      this.timelineData = timelineData;
+    this.timelineService.addEvent(eventData).subscribe(events => {
+      this.events = events;
     });
   }
 
-  updateEvent(event: TimelineEvent) {
-    this.timelineService.update(event).subscribe(timelineData => {
-      this.timelineData = timelineData;
+  updateEvent(eventData: EventData) {
+    this.timelineService.updateEvent(eventData).subscribe(events => {
+      this.events = events;
     });
   }
 
   deleteEvent(event: TimelineEvent) {
-    this.timelineService.delete(event).subscribe(timelineData => {
-      this.timelineData = timelineData;
+    this.timelineService.deleteEvent(event).subscribe(events => {
+      this.events = events;
     });
   }
 

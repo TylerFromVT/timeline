@@ -70,16 +70,16 @@ describe('AppComponent', () => {
   describe('ngInit', () => {
 
     it('should call timeline service', async(() => {
-      spyOn(appComponent.timelineService, 'get').and.returnValue({subscribe() {}});
+      spyOn(appComponent.timelineService, 'getEvents').and.returnValue({subscribe() {}});
       fixture.detectChanges();
-      expect(appComponent.timelineService.get).toHaveBeenCalled();
+      expect(appComponent.timelineService.getEvents).toHaveBeenCalled();
     }));
 
-    it('should setup timelineData', async(() => {
+    it('should setup events', async(() => {
       const mockTimelineData = [{keywords: ['Keyword']}];
-      spyOn(appComponent.timelineService, 'get').and.returnValue(Observable.of(mockTimelineData));
+      spyOn(appComponent.timelineService, 'getEvents').and.returnValue(Observable.of(mockTimelineData));
       fixture.detectChanges();
-      expect(appComponent.timelineData).toBeTruthy();
+      expect(appComponent.events).toBeTruthy();
     }));
   });
 
