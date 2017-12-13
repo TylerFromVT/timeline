@@ -17,9 +17,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {}
 
   addEvent() {
-    console.log('Add an Event');
-    console.log(this.keywordString);
-    this.eventData.keywords = this.keywordString.split(',').map(function(keyword) {return keyword.trim()});
+    this.eventData.keywords = this.keywordString.split(',').map(function(keyword) {return keyword.trim();});
     this.emitEvent.emit(this.eventData);
   }
 }

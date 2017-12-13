@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
 import {TimelineEvent} from '../timeline-event';
 import {EventData} from '../event-data';
+import {catchError} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -19,29 +20,29 @@ export class TimelineService {
   url: string;
 
   getEvents(): Observable<EventData[]> {
-    console.log('timelineService.get');
-    return this.http.get<EventData[]>(this.url);
+    return this.http.get<EventData[]>(this.url).pipe(
+      catchError(this.handleError<EventData[]>(`getTimeline`, [])));
   }
 
   addEvent(eventData: EventData): Observable<EventData[]> {
-    console.log('timelineService.addEvent');
-    return this.http.post<EventData[]>(this.url, eventData, httpOptions);
+    return this.http.post<EventData[]>(this.url, eventData, httpOptions).pipe(
+      catchError(this.handleError<EventData[]>(`addEvent`, [])));
   }
 
   updateEvent(eventData: EventData): Observable<EventData[]> {
-    return this.http.put<EventData[]>(this.url, eventData, httpOptions);
+    return this.http.put<EventData[]>(this.url, eventData, httpOptions).pipe(
+      catchError(this.handleError<EventData[]>(`updateEvent`, [])));
   }
 
-  deleteEvent(timelineEvent: TimelineEvent): Observable<EventData[]> {
-    const url = `${this.url}/${timelineEvent.id}`;
-    return this.http.delete<EventData[]>(url, httpOptions);
+  deleteEvent(eventId: number): Observable<EventData[]> {
+    const url = `${this.url}/${eventId}`;
+    return this.http.delete<EventData[]>(url, httpOptions).pipe(
+      catchError(this.handleError<EventData[]>(`deleteEvent`, [])));
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-      // Let the app keep running by returning an empty result.
+    return (): Observable<T> => {
+      console.error('Error on operation: ' + operation);
       return of(result as T);
     };
   }

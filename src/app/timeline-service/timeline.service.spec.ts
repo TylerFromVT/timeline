@@ -9,6 +9,8 @@ describe('TimelineService', () => {
   let timelineService: TimelineService;
   let httpMock: HttpTestingController;
 
+  let id: number, keyword: string, eventData: EventData, responseBody: EventData[], req: TestRequest;
+
   const url = 'http://localhost:3000/timeline';
 
   beforeEach(() => {
@@ -22,6 +24,12 @@ describe('TimelineService', () => {
     });
     timelineService = TestBed.get(TimelineService);
     httpMock = TestBed.get(HttpTestingController);
+
+      id = 47;
+      keyword = 'Some Keyword';
+      eventData = new EventData();
+      eventData.id = id;
+      eventData.keywords = [keyword];
   });
 
   it('should be created', inject([TimelineService], (service: TimelineService) => {
@@ -29,14 +37,8 @@ describe('TimelineService', () => {
   }));
 
   describe('Happy Path', () => {
-    let id: number, keyword: string, eventData: EventData, responseBody: EventData[], req: TestRequest;
 
     beforeEach(() => {
-      id = 47;
-      keyword = 'Some Keyword';
-      eventData = new EventData();
-      eventData.id = id;
-      eventData.keywords = [keyword];
       responseBody = [eventData];
     });
 
@@ -72,7 +74,7 @@ describe('TimelineService', () => {
     }));
 
     it('should deleteEvent event', inject([TimelineService], (service: TimelineService) => {
-      service.deleteEvent(eventData).subscribe((events: EventData[]) => {
+      service.deleteEvent(eventData.id).subscribe((events: EventData[]) => {
         expect(events[0].keywords[0]).toBe(keyword);
       });
 
@@ -82,6 +84,52 @@ describe('TimelineService', () => {
   });
 
   describe('Unhappy Path', () => {
+
+    let errorEvent;
+
+    beforeEach(() => {
+      errorEvent = new ErrorEvent('Error');
+    });
+
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('should return empty list of events for getEvents', inject([TimelineService], (service: TimelineService) => {
+      service.getEvents().subscribe((events: EventData[]) => {
+        expect(events.length).toBe(0);
+      });
+
+      req = httpMock.expectOne(url);
+      req.error(errorEvent);
+    }));
+
+    it('should return empty list of events for addEvent', inject([TimelineService], (service: TimelineService) => {
+      service.addEvent(eventData).subscribe((events: EventData[]) => {
+        expect(events.length).toBe(0);
+      });
+
+      req = httpMock.expectOne(url);
+      req.error(errorEvent);
+    }));
+
+    it('should return empty list of events for updateEvent', inject([TimelineService], (service: TimelineService) => {
+      service.updateEvent(eventData).subscribe((events: EventData[]) => {
+        expect(events.length).toBe(0);
+      });
+
+      req = httpMock.expectOne(url);
+      req.error(errorEvent);
+    }));
+
+    it('should return empty list of events for deleteEvent', inject([TimelineService], (service: TimelineService) => {
+      service.deleteEvent(eventData.id).subscribe((events: EventData[]) => {
+        expect(events.length).toBe(0);
+      });
+
+      req = httpMock.expectOne(url + '/' + id);
+      req.error(errorEvent);
+    }));
 
   });
 

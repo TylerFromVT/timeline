@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  deleteEvent(event: TimelineEvent) {
-    this.timelineService.deleteEvent(event).subscribe(events => {
+  deleteEvent(eventData: EventData) {
+    this.timelineService.deleteEvent(eventData.id).subscribe(events => {
       this.events = events;
     });
   }
