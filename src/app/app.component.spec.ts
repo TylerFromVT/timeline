@@ -10,6 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {ErrorMessageComponent} from './error-message/error-message.component';
+import {ErrorService} from './error-service/error-service';
 
 describe('AppComponent', () => {
 
@@ -26,16 +28,21 @@ describe('AppComponent', () => {
         TimelineComponent,
         AddEventComponent,
         KeywordComponent,
-        EventComponent
+        EventComponent,
+        ErrorMessageComponent
       ],
       providers: [
-        TimelineService
+        TimelineService,
+        ErrorService
       ]
     }).compileComponents();
 
+  }));
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     appComponent = fixture.debugElement.componentInstance;
-  }));
+  });
 
   it('should create the app', async(() => {
     const app = fixture.debugElement.componentInstance;
@@ -43,6 +50,16 @@ describe('AppComponent', () => {
   }));
 
   describe('DOM Structure', () => {
+
+    it(`should have the correct title`, async(() => {
+      const headerTag = fixture.debugElement.query(By.css('h1'));
+      expect(headerTag.nativeElement.textContent).toBe('Timeline Playground');
+    }));
+
+    it(`should not have an error message element`, async(() => {
+      const errorMessageComponent = fixture.debugElement.query(By.css('.error-message'));
+      expect(errorMessageComponent).toBeFalsy();
+    }));
 
     it(`should have a keyword component`, async(() => {
       const keywordComponent = fixture.debugElement.query(By.css('app-keyword'));
@@ -70,7 +87,7 @@ describe('AppComponent', () => {
   describe('ngInit', () => {
 
     it('should call timeline service', async(() => {
-      spyOn(appComponent.timelineService, 'getEvents').and.returnValue({subscribe() {}});
+      spyOn(appComponent.timelineService, 'getEvents').and.returnValue(Observable.of([]));
       fixture.detectChanges();
       expect(appComponent.timelineService.getEvents).toHaveBeenCalled();
     }));
@@ -80,6 +97,15 @@ describe('AppComponent', () => {
       spyOn(appComponent.timelineService, 'getEvents').and.returnValue(Observable.of(mockTimelineData));
       fixture.detectChanges();
       expect(appComponent.events).toBeTruthy();
+    }));
+
+    it('should display errors from Error Service', async(() => {
+      appComponent.timelineService.errorService.message = 'bad';
+      spyOn(appComponent.timelineService, 'getEvents').and.returnValue(Observable.of([]));
+      fixture.detectChanges();
+
+      const errorMessageComponent = fixture.debugElement.query(By.css('app-error-message label'));
+      expect(errorMessageComponent).toBeTruthy();
     }));
   });
 

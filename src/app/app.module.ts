@@ -9,6 +9,8 @@ import {FormsModule} from '@angular/forms';
 import { KeywordComponent } from './keyword/keyword.component';
 import { EventComponent } from './timeline/event/event.component';
 import { AddEventComponent } from './add-event/add-event.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import {ErrorService} from './error-service/error-service';
 
 
 @NgModule({
@@ -17,14 +19,17 @@ import { AddEventComponent } from './add-event/add-event.component';
     TimelineComponent,
     KeywordComponent,
     EventComponent,
-    AddEventComponent
+    AddEventComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [TimelineService],
+  providers: [
+    TimelineService,
+    ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

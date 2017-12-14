@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {of} from 'rxjs/observable/of';
-import {TimelineEvent} from '../timeline-event';
 import {EventData} from '../event-data';
 import {catchError} from 'rxjs/operators';
+import {ErrorService} from '../error-service/error-service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -13,15 +13,16 @@ const httpOptions = {
 @Injectable()
 export class TimelineService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private errorService: ErrorService) {
     this.url = 'http://localhost:3000/timeline';
   }
 
   url: string;
 
   getEvents(): Observable<EventData[]> {
+    this.errorService.clear();
     return this.http.get<EventData[]>(this.url).pipe(
-      catchError(this.handleError<EventData[]>(`getTimeline`, [])));
+      catchError(this.handleError<EventData[]>(`Unexpected error fetching timeline data`, [])));
   }
 
   addEvent(eventData: EventData): Observable<EventData[]> {
@@ -40,9 +41,9 @@ export class TimelineService {
       catchError(this.handleError<EventData[]>(`deleteEvent`, [])));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T> (errorMessage, result?: T) {
     return (): Observable<T> => {
-      console.error('Error on operation: ' + operation);
+      this.errorService.message = errorMessage;
       return of(result as T);
     };
   }

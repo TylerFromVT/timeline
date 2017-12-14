@@ -4,6 +4,7 @@ import {TimelineService} from './timeline.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController, TestRequest} from '@angular/common/http/testing';
 import {EventData} from '../event-data';
+import {ErrorService} from '../error-service/error-service';
 
 describe('TimelineService', () => {
   let timelineService: TimelineService;
@@ -19,7 +20,8 @@ describe('TimelineService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        TimelineService
+        TimelineService,
+        ErrorService
       ]
     });
     timelineService = TestBed.get(TimelineService);
@@ -46,14 +48,29 @@ describe('TimelineService', () => {
       httpMock.verify();
     });
 
-    it('should getEvents', inject([TimelineService], (service: TimelineService) => {
-      service.getEvents().subscribe((events: EventData[]) => {
-        expect(events[0].keywords[0]).toBe(keyword);
-      });
+    describe('getEvents', () => {
 
-      req = httpMock.expectOne(url);
-      req.flush(responseBody);
-    }));
+      it('should return events', inject([TimelineService], (service: TimelineService) => {
+        service.getEvents().subscribe((events: EventData[]) => {
+          expect(events[0].keywords[0]).toBe(keyword);
+        });
+
+        req = httpMock.expectOne(url);
+        req.flush(responseBody);
+      }));
+
+      it('should clear error message',
+        inject([TimelineService, ErrorService], (service: TimelineService, errorService: ErrorService) => {
+          errorService.message = 'Initial Value';
+          service.getEvents().subscribe(() => {
+            expect(errorService.message).toBeFalsy();
+          });
+
+          req = httpMock.expectOne(url);
+          req.flush(responseBody);
+        }));
+    });
+
 
     it('should add event', inject([TimelineService], (service: TimelineService) => {
       service.addEvent(eventData).subscribe((events: EventData[]) => {
@@ -95,14 +112,29 @@ describe('TimelineService', () => {
       httpMock.verify();
     });
 
-    it('should return empty list of events for getEvents', inject([TimelineService], (service: TimelineService) => {
-      service.getEvents().subscribe((events: EventData[]) => {
-        expect(events.length).toBe(0);
-      });
+    describe('getEvents', () => {
 
-      req = httpMock.expectOne(url);
-      req.error(errorEvent);
-    }));
+      it('should return empty list of events',
+        inject([TimelineService, ErrorService], (tlService: TimelineService, errorService: ErrorService) => {
+        tlService.getEvents().subscribe((events: EventData[]) => {
+          expect(events.length).toBe(0);
+        });
+
+        req = httpMock.expectOne(url);
+        req.error(errorEvent);
+      }));
+
+      it('should set correct message on ErrorService',
+        inject([TimelineService, ErrorService], (tlService: TimelineService, errorService: ErrorService) => {
+        tlService.getEvents().subscribe((events: EventData[]) => {
+          expect(errorService.message).toBe('Unexpected error fetching timeline data');
+        });
+
+        req = httpMock.expectOne(url);
+        req.error(errorEvent);
+      }));
+
+    });
 
     it('should return empty list of events for addEvent', inject([TimelineService], (service: TimelineService) => {
       service.addEvent(eventData).subscribe((events: EventData[]) => {

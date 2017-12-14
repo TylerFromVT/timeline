@@ -2,4 +2,10 @@ h1 {
   color: #555;
   font-family: "Gill Sans", Helvetica, sans-serif;
   font-size: 150%;
+  text-align: center;
+}
+
+.error-message {
+  border-bottom: solid thin red;
+  margin: 0.5em 0 0.5em 0;
 }
