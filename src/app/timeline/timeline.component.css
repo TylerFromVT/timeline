@@ -1,5 +1,13 @@
-.controls {
+.gap {
+  height: 20px;
+  width:100%;
+}
+
+.timeline {
   font-family: "Gill Sans", sans-serif;
+  max-height: 700px !important;
+  border-radius: 10px;
+  overflow-y: auto;
 }
 
 .keyword-selector {
@@ -26,21 +34,11 @@
 
 /* ++++++++++++++++++++++++++++++++ */
 
-.events {
-  list-style-type: none;
-}
-
-.events li {
-  /*cursor: text;*/
-  /*position: relative;*/
-  /*left: 0;*/
-  background-color: lightgray;
-  border-color: lightgray;
-  margin: 1.0em;
-  padding: .3em 0;
-  /*height: 3.0em;*/
-  border-radius: 10px;
-  text-align: center;
+.line {
+  width: 2px;
+  height: 25px;
+  border: solid lightgray;
+  margin: auto;
 }
 
 

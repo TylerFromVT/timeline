@@ -1,13 +1,15 @@
-<div class="container controls">
-  <div class="row justify-content-center">
+<div class="gap"></div>
+<div class="container timeline">
+  <div class="row justify-content-center" *ngIf="events">
     <div class="col-sm">
-      <ul class="events">
-        <li *ngFor="let event of events">
+      <div class="events">
+        <div *ngFor="let event of events; let last = last;">
           <app-event
             [eventData]="event.eventData" (emitUpdateEvent)="onUpdateEvent($event)"
             (emitDeleteEvent)="onDeleteEvent($event)"></app-event>
-        </li>
-      </ul>
+          <div class="line" *ngIf="!last"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

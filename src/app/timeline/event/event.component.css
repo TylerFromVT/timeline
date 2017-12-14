@@ -1,13 +1,7 @@
 
-.li {
-  /*cursor: text;*/
-  /*position: relative;*/
-  /*left: 0;*/
+.event {
   background-color: lightgray;
   border-color: lightgray;
-  margin: 1.0em;
-  padding: .3em 0;
-  /*height: 3.0em;*/
   border-radius: 10px;
   text-align: center;
 }
@@ -124,10 +118,6 @@
 
 
 
-.image {
-  padding: 0 0.5em 0em 0;
-}
-
 img {
-  border: 2px solid black;
+  padding: 0.4em;
 }
