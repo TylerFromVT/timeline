@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, DebugElement, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {EventData} from '../../event-data';
 
 @Component({
@@ -30,10 +30,14 @@ export class EventComponent implements OnInit, OnChanges {
     element.classList.remove('readonly');
   }
 
-  onSaveEvent(element: any) {
-    this.eventData.keywords = getKeywordArray.call(this);
+  onBlur(element: any) {
     element.setAttribute('readonly', '');
     element.classList.add('readonly');
+  }
+
+  onSaveEvent(element: any) {
+    this.onBlur(element);
+    this.eventData.keywords = getKeywordArray.call(this);
     this.emitUpdateEvent.emit(this.eventData);
 
     function getKeywordArray() {
@@ -41,7 +45,6 @@ export class EventComponent implements OnInit, OnChanges {
         return keyword.trim();
       });
     }
-
   }
 
   onDeleteEvent() {

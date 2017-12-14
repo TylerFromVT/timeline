@@ -9,6 +9,7 @@
                *ngIf="eventData"
                [(ngModel)]="eventData.date"
                (click)="onEdit(date)"
+               (blur)="onBlur(date)"
                (keyup.enter)="onSaveEvent(date)"
                readonly>
       </div>
@@ -18,7 +19,7 @@
                *ngIf="eventData"
                [(ngModel)]="eventData.title"
                (click)="onEdit(title)"
-               (click)="onEdit(title)"
+               (blur)="onBlur(title)"
                (keyup.enter)="onSaveEvent(title)"
                readonly>
         <i class="delete-event fa fa-trash-o" (click)="onDeleteEvent(eventData)"></i>
@@ -31,6 +32,7 @@
                   *ngIf="eventData"
                   [(ngModel)]="eventData.details"
                   (click)="onEdit(details)"
+                  (blur)="onBlur(details)"
                   (keyup.enter)="onSaveEvent(details)"
                   readonly></textarea>
       </div>
@@ -43,6 +45,7 @@
                *ngIf="eventData"
                [(ngModel)]="keywordString"
                (click)="onEdit(keywords)"
+               (blur)="onBlur(keywords)"
                (keyup.enter)="onSaveEvent(keywords)"
                readonly>
       </div>
