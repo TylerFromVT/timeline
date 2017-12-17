@@ -1,0 +1,56 @@
+.gap {
+  height: 20px;
+  width:100%;
+}
+
+.timeline {
+  font-family: "Gill Sans", sans-serif;
+  max-width: 100%;
+  max-height: 400px;
+
+  border-radius: 10px;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+
+
+.year {
+  display: inline-block;
+  width: 15em;
+  margin-right: 0.5em;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: darkgray;
+}
+
+.cn {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-items: stretch;
+  justify-items: stretch;
+  justify-self: stretch;
+}
+
+.year-label {
+  font-size: medium;
+  background-color: darkgray;
+  align-items: stretch;
+  justify-self: stretch;
+}
+
+.event {
+  align-items: stretch;
+  font-size: small;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: lightgray;
+  justify-self: stretch;
+}
+
+.space {
+  background-color: white;
+  height: 10px;
+}

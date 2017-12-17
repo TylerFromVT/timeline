@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output} from '@angular/core';
-import {TimelineEvent} from '../timeline-event';
-import {EventData} from '../event-data';
+import {TimelineEvent} from '../../timeline-event';
+import {EventData} from '../../event-data';
 
 @Component({
   selector: 'app-timeline',

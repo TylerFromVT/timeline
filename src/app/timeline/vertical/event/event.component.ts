@@ -1,5 +1,5 @@
 import {Component, DebugElement, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {EventData} from '../../event-data';
+import {EventData} from '../../../event-data';
 
 @Component({
   selector: 'app-event',

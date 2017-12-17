@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventComponent } from './event.component';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {EventData} from '../../event-data';
+import {EventData} from '../../../event-data';
 import {DebugElement} from '@angular/core';
 import {EventComponentPageObject} from './event.component.po';
 

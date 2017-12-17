@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimelineComponent } from './timeline.component';
-import {TimelineService} from '../timeline-service/timeline.service';
+import {TimelineService} from '../../timeline-service/timeline.service';
 import {FormsModule} from '@angular/forms';
 import {EventComponent} from './event/event.component';
 

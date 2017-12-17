@@ -1,0 +1,21 @@
+<div class="gap"></div>
+<div class="container timeline">
+  <div class="row justify-content-center align-items-start " *ngIf="events">
+    <div class="col-sm">
+
+      <div *ngFor="let year of gahs;" class="year">
+        <div class="cn">
+          <div  class="year-label">
+            {{year}}
+          </div>
+          <div *ngFor="let event of years[year];" class="event">
+            <div class="space" *ngIf="!last"></div>
+            {{event.eventData.title}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
