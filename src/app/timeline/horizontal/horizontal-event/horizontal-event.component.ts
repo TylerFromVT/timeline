@@ -9,6 +9,7 @@ import {EventData} from '../../../event-data';
 export class HorizontalEventComponent implements OnInit, OnChanges {
 
   @Input() eventData: EventData;
+  keywordString: string;
 
   constructor() { }
 
@@ -18,6 +19,7 @@ export class HorizontalEventComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventData'] && changes['eventData'].currentValue) {
       this.eventData = changes['eventData'].currentValue;
+      this.keywordString = this.eventData.keywords.join(', ');
     }
   }
 

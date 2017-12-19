@@ -1,4 +1,4 @@
-<div class="container" *ngIf="events">
+<div class="container" *ngIf="eventsByYear">
   <div class="gap"></div>
   <div class="row event-details">
     <div class="col-sm">
@@ -17,7 +17,7 @@
             <div class="year-label">
               {{year}}
             </div>
-            <div *ngFor="let event of events[year];" class="event" (click)="showEventDetails(event)">
+            <div *ngFor="let event of eventsByYear[year];" class="event" (click)="showEventDetails(event)">
               <div class="space" *ngIf="!last"></div>
               {{event.eventData.title}}
             </div>

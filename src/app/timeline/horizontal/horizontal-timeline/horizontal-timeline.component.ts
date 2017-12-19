@@ -18,7 +18,7 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
   // events: TimelineEvent[];  // Can this be EvenData[]?
 
   years: number[];
-  events: TimelineEvent[][];
+  eventsByYear: TimelineEvent[][];
   event: TimelineEvent;
 
   private _timelineData: EventData[];
@@ -36,7 +36,6 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    let events: TimelineEvent[];
 
     if (changes['timelineData'] && changes['timelineData'].currentValue) {
       this._timelineData = changes['timelineData'].currentValue;
@@ -49,17 +48,15 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
 
     if (this._timelineData.length) {
 
-      events = filterEvents.call(this);
+      const events: TimelineEvent[] = filterEvents.call(this);
 
       if (events.length) {
-        console.log(events);
-        console.log('Horizontal Timeline');
         const firstYear = events[0].year;
         const lastYear = events[events.length - 1].year;
 
         this.years = range(firstYear, lastYear - firstYear + 1);
 
-        this.events = [];
+        this.eventsByYear = [];
 
         for (let year = firstYear; year <= lastYear; year++) {
           const thisYear = new Array<TimelineEvent>();
@@ -68,7 +65,7 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
               thisYear.push(event);
             }
           }
-          this.events[year] = thisYear;
+          this.eventsByYear[year] = thisYear;
         }
       }
     }
@@ -95,7 +92,6 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
   }
 
   showEventDetails(event: TimelineEvent) {
-    console.log('Show some details!');
     this.event = event;
   }
 
