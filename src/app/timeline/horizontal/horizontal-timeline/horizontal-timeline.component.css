@@ -8,7 +8,6 @@
   max-width: 100%;
   max-height: 400px;
 
-  border-radius: 10px;
   overflow-x: auto;
   overflow-y: auto;
   white-space: nowrap;
@@ -48,6 +47,7 @@
   overflow-x: hidden;
   background-color: lightgray;
   justify-self: stretch;
+  cursor: pointer;
 }
 
 .space {

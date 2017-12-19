@@ -1,0 +1,123 @@
+
+.horizontal-event {
+  background-color: lightgray;
+  border-color: lightgray;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.date {
+  font-size: large;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 0.5em;
+
+  background-color: white;
+  border: solid thin darkgray;
+}
+
+.date:hover {
+  cursor: text;
+}
+
+.date.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.title {
+  font-size: medium;
+  color: darkslategray;
+  width: 95%;
+  border-radius: 6px;
+  text-align: left;
+  padding: 0.2em 0 0 1.5em;
+
+  background-color: white;
+  border: solid thin darkgray;
+}
+
+.title:hover {
+  cursor: text;
+}
+
+.title.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+.delete-horizontal-event {
+  font-size: medium;
+  float: right;
+  padding-top: 0.5em;
+}
+.delete-horizontal-event:hover {
+  cursor: pointer;
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.details {
+  font-size: small;
+  text-align: left;
+  color: dimgray;
+  width: 98%;
+  resize: none;
+
+
+  background-color: white;
+  border: solid thin darkgray;
+}
+
+.details:hover {
+  cursor: text;
+}
+
+.details.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+.details .text-details {
+  padding: 0.5em 0.2em 0 0.2em;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.keywords {
+  font-size: small;
+  text-align: left;
+  padding: 1.0em 0 0 1.0em;
+}
+
+.keywords-label {
+  padding-top: 0.1em;
+}
+
+.keywords-input {
+  font-size: small;
+  text-align: left;
+  font-style: italic;
+  color: dimgray;
+  width: 95%
+}
+
+.keywords-input:hover {
+  cursor: text;
+}
+
+.keywords-input.readonly {
+  background-color: inherit;
+  border: solid thin lightgray;
+}
+
+
+
+
+img {
+  padding: 0.4em;
+}

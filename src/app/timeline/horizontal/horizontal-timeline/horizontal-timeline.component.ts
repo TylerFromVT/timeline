@@ -15,10 +15,11 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
   @Output() emitDeleteEvent = new EventEmitter<TimelineEvent>();
 
 
-  events: TimelineEvent[];  // Can this be EvenData[]?
+  // events: TimelineEvent[];  // Can this be EvenData[]?
 
-  gahs: number[];
-  years: TimelineEvent[][];
+  years: number[];
+  events: TimelineEvent[][];
+  event: TimelineEvent;
 
   private _timelineData: EventData[];
   private _enabledKeywords: string[];
@@ -35,13 +36,10 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    console.log('ngOnChanges');
-    console.log(changes);
-
+    let events: TimelineEvent[];
 
     if (changes['timelineData'] && changes['timelineData'].currentValue) {
       this._timelineData = changes['timelineData'].currentValue;
-      console.log(this._timelineData);
     }
 
     if (changes['enabledKeywords'] && changes['enabledKeywords'].currentValue) {
@@ -51,41 +49,40 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
 
     if (this._timelineData.length) {
 
-      filterEvents.call(this);
+      events = filterEvents.call(this);
 
-      if (this.events.length) {
-        console.log(this.events);
+      if (events.length) {
+        console.log(events);
         console.log('Horizontal Timeline');
-        const firstYear = this.events[0].year;
-        const lastYear = this.events[this.events.length - 1].year;
+        const firstYear = events[0].year;
+        const lastYear = events[events.length - 1].year;
 
-        this.gahs = range(firstYear, lastYear - firstYear + 1);
+        this.years = range(firstYear, lastYear - firstYear + 1);
 
-        this.years = [];
+        this.events = [];
 
         for (let year = firstYear; year <= lastYear; year++) {
           const thisYear = new Array<TimelineEvent>();
-          for (const event of this.events) {
+          for (const event of events) {
             if (event.year === year) {
               thisYear.push(event);
             }
           }
-          console.log(year);
-          console.log(thisYear);
-          this.years[year] = thisYear;
+          this.events[year] = thisYear;
         }
       }
     }
 
     function filterEvents() {
-      this.events = [];
+      const events = [];
       for (const event of this._timelineData) {
         const timelineEvent = new TimelineEvent(event);
         if (this.findOne(this._enabledKeywords, timelineEvent.keywords) === true) {
-          this.events.push(timelineEvent);
+          events.push(timelineEvent);
         }
       }
-      this.events.sort();
+      events.sort();
+      return events;
     }
 
     function range(start, count) {
@@ -95,6 +92,11 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
         });
     }
 
+  }
+
+  showEventDetails(event: TimelineEvent) {
+    console.log('Show some details!');
+    this.event = event;
   }
 
   findOne(haystack, arr) {

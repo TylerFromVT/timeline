@@ -1,0 +1,63 @@
+<div class="row horizontal-event">
+
+  <div class="col-sm-10">
+
+    <div class="row">
+
+      <div class="col-sm-3">
+        <input #date class="date readonly"
+               *ngIf="eventData"
+               [(ngModel)]="eventData.date"
+               (click)="onEdit(date)"
+               (blur)="onBlur(date)"
+               (keyup.enter)="onSaveEvent(date)"
+               readonly>
+      </div>
+
+      <div class="col-sm">
+        <input #title type="text" class="title readonly"
+               *ngIf="eventData"
+               [(ngModel)]="eventData.title"
+               (click)="onEdit(title)"
+               (blur)="onBlur(title)"
+               (keyup.enter)="onSaveEvent(title)"
+               readonly>
+        <i class="delete-event fa fa-trash-o" (click)="onDeleteEvent(eventData)"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        <textarea #details class="details readonly"
+                  *ngIf="eventData"
+                  [(ngModel)]="eventData.details"
+                  (click)="onEdit(details)"
+                  (blur)="onBlur(details)"
+                  (keyup.enter)="onSaveEvent(details)"
+                  readonly></textarea>
+      </div>
+    </div>
+
+    <div class="row keywords">
+      <div class="col-sm-1 keywords-label">Keywords</div>
+      <div class="col-sm">
+        <input #keywords class="keywords-input readonly"
+               *ngIf="eventData"
+               [(ngModel)]="keywordString"
+               (click)="onEdit(keywords)"
+               (blur)="onBlur(keywords)"
+               (keyup.enter)="onSaveEvent(keywords)"
+               readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="image">
+      <img width=100% src="/assets/Tree.jpg">
+    </div>
+  </div>
+
+</div>
+
+

@@ -5,8 +5,10 @@
       <div class="events">
         <div *ngFor="let event of events; let last = last;">
           <app-event
-            [eventData]="event.eventData" (emitUpdateEvent)="onUpdateEvent($event)"
-            (emitDeleteEvent)="onDeleteEvent($event)"></app-event>
+            [eventData]="event.eventData"
+            (emitUpdateEvent)="onUpdateEvent($event)"
+            (emitDeleteEvent)="onDeleteEvent($event)">
+          </app-event>
           <div class="line" *ngIf="!last"></div>
         </div>
       </div>
