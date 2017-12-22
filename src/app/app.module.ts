@@ -11,7 +11,7 @@ import { EventComponent } from './timeline/vertical/event/event.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import {ErrorService} from './error-service/error-service';
-import { HorizontalTimelineComponent } from './timeline/horizontal/horizontal-timeline/horizontal-timeline.component';
+import { HorizontalTimelineComponent } from './timeline/horizontal/horizontal-timeline.component';
 import { HorizontalEventComponent } from './timeline/horizontal/horizontal-event/horizontal-event.component';
 
 

@@ -1,5 +1,5 @@
+<div class="gap"></div>
 <div class="container" *ngIf="eventsByYear">
-  <div class="gap"></div>
   <div class="row event-details">
     <div class="col-sm">
       <app-horizontal-event
@@ -9,8 +9,7 @@
     </div>
   </div>
   <div class="gap"></div>
-  <div class="timeline" >
-    <div class="row justify-content-center align-items-start " >
+    <div class="timeline row justify-content-center align-items-start " >
       <div class="col-sm">
         <div *ngFor="let year of years;" class="year">
           <div class="cn">
@@ -23,9 +22,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-
-</div>

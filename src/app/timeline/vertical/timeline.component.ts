@@ -18,6 +18,7 @@ export class TimelineComponent implements OnInit, OnChanges {
   private _timelineData: EventData[];
   private _enabledKeywords: string[];
 
+
   constructor() {
     this.timelineData = [];
     this._timelineData = [];

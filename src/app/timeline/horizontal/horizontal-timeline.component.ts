@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {EventData} from '../../../event-data';
-import {TimelineEvent} from '../../../timeline-event';
+import {EventData} from '../../event-data';
+import {TimelineEvent} from '../../timeline-event';
 
 @Component({
   selector: 'app-horizontal-timeline',

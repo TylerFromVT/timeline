@@ -1,3 +1,4 @@
+
 .gap {
   height: 20px;
   width:100%;
@@ -11,9 +12,10 @@
   overflow-x: auto;
   overflow-y: auto;
   white-space: nowrap;
+
+  border: solid thin darkgray;
+  border-radius: 10px;
 }
-
-
 
 .year {
   display: inline-block;
