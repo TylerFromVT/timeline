@@ -3,25 +3,27 @@
   <div class="row event-details">
     <div class="col-sm">
       <app-horizontal-event
-        *ngIf="event"
-        [eventData]="event.eventData">
+        *ngIf="selectedEvent"
+        [eventData]="selectedEvent.eventData">
       </app-horizontal-event>
     </div>
   </div>
   <div class="gap"></div>
-    <div class="timeline row justify-content-center align-items-start " >
-      <div class="col-sm">
-        <div *ngFor="let year of years;" class="year">
-          <div class="cn">
-            <div class="year-label">
-              {{year}}
-            </div>
-            <div *ngFor="let event of eventsByYear[year];" class="event" (click)="showEventDetails(event)">
-              <div class="space" *ngIf="!last"></div>
-              {{event.eventData.title}}
-            </div>
+  <div class="timeline row justify-content-center align-items-start ">
+    <div class="col-sm">
+      <div *ngFor="let year of years;" class="year">
+        <div class="cn">
+          <div class="year-label">
+            {{year}}
+          </div>
+          <div *ngFor="let event of eventsByYear[year];"
+               class="event"
+               (click)="showEventDetails(event)">
+            <div class="space" *ngIf="!last"></div>
+            <div [ngClass]="{'selected' : event === selectedEvent}">{{event.eventData.title}}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

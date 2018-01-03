@@ -14,12 +14,9 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
   @Output() emitEvent = new EventEmitter<TimelineEvent>();
   @Output() emitDeleteEvent = new EventEmitter<TimelineEvent>();
 
-
-  // events: TimelineEvent[];  // Can this be EvenData[]?
-
   years: number[];
   eventsByYear: TimelineEvent[][];
-  event: TimelineEvent;
+  selectedEvent: TimelineEvent;
 
   private _timelineData: EventData[];
   private _enabledKeywords: string[];
@@ -92,7 +89,7 @@ export class HorizontalTimelineComponent implements OnInit, OnChanges {
   }
 
   showEventDetails(event: TimelineEvent) {
-    this.event = event;
+    this.selectedEvent = event;
   }
 
   findOne(haystack, arr) {

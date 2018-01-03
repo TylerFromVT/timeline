@@ -48,8 +48,14 @@
   text-align: center;
   overflow-x: hidden;
   background-color: lightgray;
+  color: dimgrey;
   justify-self: stretch;
   cursor: pointer;
+}
+
+.selected {
+  color: black;
+  border: solid thin dimgrey;
 }
 
 .space {
